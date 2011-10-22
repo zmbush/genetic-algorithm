@@ -42,6 +42,7 @@ public class creature {
 		this.gatheringSpeed = r.nextInt(6);
 		this.movementSpeed = r.nextInt(2) + 1;
 		this.stealth = r.nextInt(6);
+      this.cooperation = r.nextInt(4);
 	}
 	
 	public void declareAlly(creature friend){

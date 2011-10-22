@@ -12,34 +12,53 @@ public class main {
 	static predator[] preds;
 	static pathFinder pf;
 	static pathFinder ps;
-	static int generations = 100;
+	static int generations = 10000;
 	static int gennum = 0;
+   static boolean predators = false;
+   static boolean predWin = false;
 
 	public static void main(String[] args){
+      for(int i = 0; i < args.length; i++){
+         System.err.println(args[i]);
+      }
+		initMap(size);
+      if(args.length > 0){
+         predators = true;
+         if(args[0].equals("no-pred")){
+            predators = false;
+         }else if(args[0].equals("pred-win")){
+            predWin = true;
+            initCreatures(20);
+            initPredators(4);
+         }else if(args[0].equals("pred-lose")){
+            predWin = false;
+            initCreatures(40);
+            initPredators(2);
+         }
+      }
 		pf = new preferredDirectionSharing();
 		ps = new predatorStrat();
 		System.out.println(size + " " + size);
-		initMap(size);
 		//		System.out.println("Map initialized.");
-		initCreatures(40);
 		//		System.out.println("Creatures initialized.");
 		initPredators(2);
 		displayMap();
+      //System.err.println("Population,Sight,Cooperation,Food,Fertility,Movement Speed,Gathering Speed");
 		while (gennum < generations){
-			System.err.println("Agents: " + creatures.length);
+			//System.err.println("Agents: " + creatures.length);
 			runGeneration();
 			//          System.err.println("Before sharing: ");
 			//          creature[] before = sortCreaturesByFood();
 			//          for(int i = 0; i < before.length; i++){
 			//             System.err.println(before[i].food);
 			//          }
-			share();
+         share();
 			//          System.err.println("After sharing: ");
 			//          creature[] after = sortCreaturesByFood();
 			//          for(int i = 0; i < after.length; i++){
 			//             System.err.println(after[i].food);
 			//          }
-			System.err.println();
+			//System.err.println();
 			printInfo();
 			createNextGeneration();
 			initMap(size);
@@ -83,15 +102,19 @@ public class main {
 	public static void displayMap(){
 		for(int x = 0; x < map.length; x++){
 			for(int y = 0; y < map[x].length; y++){
-				System.out.println(map[x][y].food + " " + map[x][y].creaturesHere() + " " + map[x][y].predatorsHere());
+				System.out.println(map[x][y].food + " " + map[x][y].creaturesHere() 
+               + " " + ((predators) ? map[x][y].predatorsHere() : 0));
 			}
 		}
 	}
 
 	public static void runGeneration(){
-		for(int i = 0; i < 300 && totalFood() > 0; i++){
+		for(int i = 0; i < 100 && totalFood() > 0; i++){
 			//while(totalFood() > 0){
-			ps.doMove();
+
+         if(predators){
+            ps.doMove();
+         }
 			pf.doMove();
 			displayMap();
 		}
@@ -131,10 +154,6 @@ public class main {
       predator[] psort = sortPredatorsByFood();
 
       LinkedList<predator> survivor = new LinkedList<predator>();
-      System.err.println("Predator Food Distribution: ");
-      for(int i = 0; i < psort.length; i++){
-         System.err.println(psort[i].food);
-      }
 
       for(int i = 0 ; i < psort.length && psort[i].food >= predatorThreshold; i++){
          survivor.add(psort[i]);
@@ -211,31 +230,33 @@ public class main {
 			}
 		}
 		// Suicide...
-		for(int i = 0; i < creatures.length; i++){
-			creature c = creatures[i];
-			Iterator<creature> iter = c.allies.listIterator();
-			float maxFood = -1;
-			creature t, r = null;
-			while(iter.hasNext()){
-				t = iter.next();
-				if(c.food > maxFood){
-					maxFood = t.food;
-					r = t;
-				}
-			}
-			if(r != null){
-				if(maxFood < threshold + 1 && maxFood < c.food){
-					float need = threshold - r.food;
-					if(c.food >= need){
-						c.food -= need;
-						r.food += need;
-					}else{
-						r.food += c.food;
-						c.food = 0;
-					}
-				}
-			}
-		}
+      for(int x = 0; x < 10; x++){
+         for(int i = 0; i < creatures.length; i++){
+            creature c = creatures[i];
+            Iterator<creature> iter = c.allies.listIterator();
+            float maxFood = -1;
+            creature t, r = null;
+            while(iter.hasNext()){
+               t = iter.next();
+               if(c.food > maxFood){
+                  maxFood = t.food;
+                  r = t;
+               }
+            }
+            if(r != null){
+               if(maxFood < threshold + 1 && maxFood < c.food){
+                  float need = threshold - r.food;
+                  if(c.food >= need){
+                     c.food -= need;
+                     r.food += need;
+                  }else{
+                     r.food += c.food;
+                     c.food = 0;
+                  }
+               }
+            }
+         }
+      }
 	}
 
 	public static void printInfo(){
@@ -263,6 +284,9 @@ public class main {
 		avgGatheringSpeed /= creatures.length;
       avgStealth /= creatures.length;
 
+      System.err.println("Creatures: " + creatures.length);
+      System.err.println("Predators: " + preds.length);
+      System.err.println();
 		System.err.println("Average Scores:");
 		System.err.println("Sight: " + avgSight);
 		System.err.println("Cooperation: " + avgCooperation);
@@ -272,5 +296,6 @@ public class main {
 		System.err.println("Gathering Speed: " + avgGatheringSpeed);
       System.err.println("Stealth: " + avgStealth);
 		System.err.println();
+//       System.err.println(creatures.length + "," + avgSight + "," + avgCooperation + "," + avgFood + "," + avgFertility + "," + avgMovementSpeed + "," + avgGatheringSpeed);
 	}
 }

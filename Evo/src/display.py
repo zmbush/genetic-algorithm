@@ -70,7 +70,7 @@ def main():
             else:
                break
       pygame.display.flip()
-      clock.tick(60)
+      clock.tick(20)
 
 
    for line in sys.stdin:

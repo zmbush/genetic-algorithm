@@ -23,6 +23,7 @@ public class predator extends creature{
 	
 	@Override
 	public void eat() {
+      if(this.food >= 4) return;
 		place loc = main.map[x][y];
       int gath = (int)Math.ceil(gatheringSpeed / 4.0f);
 		if(loc.creaturesHere() >= gath){
