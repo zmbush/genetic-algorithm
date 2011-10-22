@@ -25,6 +25,14 @@ public class creature {
 	
 	creature(){		
 	}
+	
+	public void initRandomness() {
+		Random r = new Random();
+		this.sight = r.nextInt(4);
+		this.fertility = r.nextInt(4);
+		this.gatheringSpeed = r.nextInt(6);
+		this.movementSpeed = r.nextInt(2) + 1;
+	}
 
 	public void move(int direction){
 		main.map[this.x][this.y].removeCreature(this);
@@ -57,7 +65,7 @@ public class creature {
       
    }
 	
-	public creature mateWith(creature mate){
+	public creature produce(creature mate){
 		Random c = new Random();
 		creature baby = new creature(mate.x, mate.y);
 		float nf = (this.fertility + mate.fertility)/2 + c.nextFloat()*norp();
