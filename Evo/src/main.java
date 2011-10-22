@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.LinkedList;
 
 
 public class main {
@@ -6,21 +7,22 @@ public class main {
 	static place[][] map = new place[size][size];
 	static creature[] creatures;
 	static pathFinder pf;
-	static int rounds = 1000;
-	static int roundnum = 0;
+	static int generations = 10;
+	static int gennum = 0;
 
 	public static void main(String[] args){
 		pf = new mostFood();
 		System.out.println(size + " " + size);
-		initMap(size);
+      initMap(size);
 		//		System.out.println("Map initialized.");
 		initCreatures(10);
 		//		System.out.println("Creatures initialized.");
 		displayMap();
-		while (roundnum<rounds){
-			runRound();
-			displayMap();
-			roundnum++;
+		while (gennum < generations){
+			runGeneration();
+         createNextGeneration();
+			gennum++;
+         initMap(size);
 		}
 	}
 
@@ -53,12 +55,32 @@ public class main {
 		}
 	}
 
-	public static void runRound(){
-		pf.doMove();
-		//	System.out.println("Running round" + roundnum);
-		//
+	public static void runGeneration(){
+      for(int i = 0; i < 100; i++){
+         pf.doMove();
+         displayMap();
+      }
 	}
 
+   public static void createNextGeneration(){
+      creature[] sorted = sortCreaturesByFood();
+      LinkedList<creature> fit = new LinkedList<creature>();
+   }
+
+   public static creature[] sortCreaturesByFood(){
+      creature[] retval = creatures;
+      for(int i = 0; i < retval.length; i++){
+         for(int j = 0; j < retval.length - i - 1; j++){
+            if(retval[j].food < retval[j+1].food){
+               creature temp = retval[j];
+               retval[j] = retval[j+1];
+               retval[j+1] = temp;
+            }
+         }
+      }
+      return retval;
+   }
+	
 	public static void printInfo(){
 		int avgSight = 0;
 		int avgCooperation = 0;
