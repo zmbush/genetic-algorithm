@@ -8,6 +8,7 @@ public class creature {
 	float fertility = 2; // 0-3
 	float movementSpeed= 4; //inverse min 1
 	float gatheringSpeed = 4; // 0-8
+	int lengthOfStay = 0;
 	int x = 0;
 	int y= 0;
 	//path finding
@@ -63,6 +64,10 @@ public class creature {
          loc.food = 0;
       }
       
+   }
+   
+   public void look(){
+	   
    }
    public creature[] mateWith(creature mate){
 	   int numOfChildren = (int) ((this.fertility+mate.fertility) / 2);
