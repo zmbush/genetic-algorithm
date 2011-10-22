@@ -66,8 +66,29 @@ public class creature {
       
    }
    
-   public void look(){
-	   
+   public int look(int direction){
+	   int total = 0;
+	   if (direction == up){
+		   for (int i = 0; i<this.sight && this.y - i >= 0; i++){
+			   total += main.map[this.x][this.y - i].food;
+		   }
+	   }
+	   if (direction == down){
+		   for (int i = 0; i<this.sight && this.y + i < main.size; i++){
+			   total += main.map[this.x][this.y + i].food;
+		   }
+	   }
+	   if (direction == left){
+		   for (int i = 0; i<this.sight && this.x - i >= 0; i++){
+			   total += main.map[this.x - i][this.y].food;
+		   }
+	   }
+	   if (direction == right){
+		   for (int i = 0; i<this.sight && this.x + i <main.size; i++){
+			   total += main.map[this.x +1][this.y].food;
+		   }
+	   }
+	   return total;
    }
    public creature[] mateWith(creature mate){
 	   int numOfChildren = (int) ((this.fertility+mate.fertility) / 2);
