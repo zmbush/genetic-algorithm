@@ -32,4 +32,5 @@ public class predator extends creature{
 		this.gatheringSpeed = r.nextInt(4)+1;
 		this.movementSpeed = r.nextInt(2) + 1;
 	}
+
 }

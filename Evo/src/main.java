@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class main {
 	static int size= 20;
 	static int threshold = 20;
-	static int t = 3;
+	static int predatorThreshold = 3;
 	static place[][] map = new place[size][size];
 	static creature[] creatures;
 	static predator[] preds;
@@ -127,6 +127,27 @@ public class main {
 
 
 		creatures = nextGen.toArray(new creature[0]);
+
+      predator[] psort = sortPredatorsByFood();
+
+      LinkedList<predator> survivor = new LinkedList<predator>();
+      for(int i = 0 ; i < psort.length && psort[i].food >= predatorThreshold; i++){
+         survivor.add(psort[i]);
+      }
+
+      LinkedList<predator> predNextGen = new LinkedList<predator>();
+      for(int i = 0; i < survivor.size(); i++){
+         int one = i + r.nextInt(survivor.size());
+         if(one >= survivor.size()) one -= survivor.size();
+         predator[] children = (predator[])survivor.get(i).mateWith((creature)survivor.get(one));
+         if(children != null){
+            for(int j = 0; j < children.length; j++){
+               predNextGen.add(children[j]);
+            }
+         }
+      }
+
+      preds = predNextGen.toArray(new predator[0]);
 	}
 
 	public static creature[] sortCreaturesByFood(){
@@ -135,6 +156,20 @@ public class main {
 			for(int j = 0; j < retval.length - i - 1; j++){
 				if(retval[j].food < retval[j+1].food){
 					creature temp = retval[j];
+					retval[j] = retval[j+1];
+					retval[j+1] = temp;
+				}
+			}
+		}
+		return retval;
+	}
+
+	public static predator[] sortPredatorsByFood(){
+		predator[] retval = preds;
+		for(int i = 0; i < retval.length; i++){
+			for(int j = 0; j < retval.length - i - 1; j++){
+				if(retval[j].food < retval[j+1].food){
+					predator temp = retval[j];
 					retval[j] = retval[j+1];
 					retval[j+1] = temp;
 				}
