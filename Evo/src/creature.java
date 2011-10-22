@@ -2,7 +2,7 @@ import java.util.Random;
 
 
 public class creature {
-	float sight = 4;
+	float sight = 2;
 	float cooperation = 4;
 	float food = 0;
 	float fertility = 4;
