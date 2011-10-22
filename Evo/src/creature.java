@@ -147,7 +147,7 @@ public class creature {
             }
             break;
          case dr:
-            for (int i = 0; i < diagSight && x + i < main.size - 1 && y + 1 < main.size - 1; i++){
+            for (int i = 0; i < diagSight && x + i < main.size - 1 && y + i < main.size - 1; i++){
                total += main.map[x + i][y + i].food;
             }
             break;
