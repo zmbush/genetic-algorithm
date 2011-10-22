@@ -11,11 +11,13 @@ public class main {
 	static creature[] creatures;
 	static predator[] preds;
 	static pathFinder pf;
+	static pathFinder ps;
 	static int generations = 100;
 	static int gennum = 0;
 
 	public static void main(String[] args){
 		pf = new preferredDirectionSharing();
+		ps = new predatorStrat();
 		System.out.println(size + " " + size);
 		initMap(size);
 		//		System.out.println("Map initialized.");
@@ -91,6 +93,7 @@ public class main {
 		for(int i = 0; i < 300 && totalFood() > 0; i++){
 			//while(totalFood() > 0){
 			pf.doMove();
+			ps.doMove();
 			displayMap();
 		}
 	}

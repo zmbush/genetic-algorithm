@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class mostFoodInSight extends pathFinder{
+public class predatorStrat extends pathFinder{
    @Override
    public void doMove(){
       Random r = new Random();
@@ -32,7 +32,7 @@ public class mostFoodInSight extends pathFinder{
             }else{
                maxFood = 0;
             }
-            if(pell.food > 0){
+            if(cell.food > 0){
                p.eat();
             }else if(maxFood > 0){
                p.move(maxDir);
