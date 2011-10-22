@@ -36,7 +36,7 @@ public class creature {
 	public void initRandomness() {
 		Random r = new Random();
 		this.sight = r.nextInt(4);
-		this.fertility = r.nextInt(3);
+		this.fertility = r.nextInt(6);
 		this.gatheringSpeed = r.nextInt(6);
 		this.movementSpeed = r.nextInt(2) + 1;
 	}
@@ -190,8 +190,8 @@ public class creature {
 		Random c = new Random();
 		creature baby = new creature(mate.x, mate.y);
 		float nf = (this.fertility + mate.fertility)/2 + c.nextFloat()*norp();
-		if (nf> 6){
-			baby.fertility = 6;
+		if (nf> 8){
+			baby.fertility = 8;
 		}else if( nf<0){
 			baby.fertility= 0;
 		}else{
