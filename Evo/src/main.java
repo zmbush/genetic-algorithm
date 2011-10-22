@@ -141,8 +141,8 @@ public class main {
 		   creature taker;
 		   if (iter.hasNext()){
 			   taker = iter.next();
-			   while (current.food > threshold){
-				   if (taker.food < threshold){
+			   while (current.food > threshold + 1){
+				   if (taker.food < threshold + 1){
 					   current.food--;
 					   taker.food++;
 				   }else{
