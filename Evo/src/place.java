@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Random;
 
 
 public class place {
@@ -15,9 +16,11 @@ public class place {
 	
 	public int creaturesHere(){
       int retval = 0;
+      Random r = new Random();
       for(int i = 0; i < crea.size(); i++){
-         if(!crea.get(i).dead)
+         if(!crea.get(i).dead && crea.get(i).stealth < r.nextInt(10)){
             retval++;
+         }
       }
 		return retval;
 	}

@@ -245,6 +245,7 @@ public class main {
 		float avgFertility = 0;
 		float avgMovementSpeed = 0;
 		float avgGatheringSpeed = 0;
+      float avgStealth = 0;
 		for (int i = 0; i<creatures.length; i++) {
 			avgSight += creatures[i].sight;
 			avgCooperation += creatures[i].cooperation;
@@ -252,6 +253,7 @@ public class main {
 			avgFertility += creatures[i].fertility;
 			avgMovementSpeed += creatures[i].movementSpeed;
 			avgGatheringSpeed += creatures[i].gatheringSpeed;
+         avgStealth += creatures[i].stealth;
 		}
 		avgSight /= creatures.length;
 		avgCooperation /= creatures.length;
@@ -259,6 +261,7 @@ public class main {
 		avgFertility /= creatures.length;
 		avgMovementSpeed /= creatures.length;
 		avgGatheringSpeed /= creatures.length;
+      avgStealth /= creatures.length;
 
 		System.err.println("Average Scores:");
 		System.err.println("Sight: " + avgSight);
@@ -267,6 +270,7 @@ public class main {
 		System.err.println("Fertility: " + avgFertility);
 		System.err.println("Movement Speed: " + avgMovementSpeed);
 		System.err.println("Gathering Speed: " + avgGatheringSpeed);
+      System.err.println("Stealth: " + avgStealth);
 		System.err.println();
 	}
 }
