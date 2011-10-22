@@ -5,12 +5,12 @@ public class main {
 	static int size= 20;
 	static place[][] map = new place[size][size];
 	static creature[] creatures;
-   static pathFinder pf;
+	static pathFinder pf;
 	static int rounds = 1000;
 	static int roundnum = 0;
 
 	public static void main(String[] args){
-      pf = new mostFood();
+		pf = new mostFood();
 		System.out.println(size + " " + size);
 		initMap(size);
 		//		System.out.println("Map initialized.");
@@ -54,11 +54,11 @@ public class main {
 	}
 
 	public static void runRound(){
-      pf.doMove();
+		pf.doMove();
 		//	System.out.println("Running round" + roundnum);
-      //
+		//
 	}
-	
+
 	public static void printInfo(){
 		int avgSight = 0;
 		int avgCooperation = 0;
@@ -80,7 +80,7 @@ public class main {
 		avgFertility /= creatures.length;
 		avgMovementSpeed /= creatures.length;
 		avgGatheringSpeed /= creatures.length;
-		
+
 		System.err.println("Average Scores:");
 		System.err.println("Sight: " + avgSight);
 		System.err.println("Cooperation: " + avgCooperation);

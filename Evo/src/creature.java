@@ -2,12 +2,12 @@ import java.util.Random;
 
 
 public class creature {
-	float sight = 2;
-	float cooperation = 4;
-	float food = 0;
-	float fertility = 4;
-	float movementSpeed= 4;
-	float gatheringSpeed = 4;
+	float sight = 2; //0-5
+	float cooperation = 4;  //
+	float food = 0; 
+	float fertility = 2; // 0-5
+	float movementSpeed= 4; //inverse min 1
+	float gatheringSpeed = 4; // 0-8
 	int x = 0;
 	int y= 0;
 	//path finding
@@ -60,9 +60,42 @@ public class creature {
 	public creature mateWith(creature mate){
 		Random c = new Random();
 		creature baby = new creature(mate.x, mate.y);
-		baby.fertility = (this.fertility + mate.fertility)/2 + c.nextFloat()*norp();
-		baby.sight = (this.sight + mate.sight)/2 + c.nextFloat()*norp();
-		baby.cooperation = (this.cooperation + mate.cooperation)/2 + c.nextFloat()*norp();
+		float nf = (this.fertility + mate.fertility)/2 + c.nextFloat()*norp();
+		if (nf> 5){
+			baby.fertility = 5;
+		}else if( nf<0){
+			baby.fertility= 0;
+		}else{
+			baby.fertility = nf;
+		}
+		
+		float ns = (this.sight + mate.sight)/2 + c.nextFloat()*norp();
+		if (ns> 5){
+			baby.sight = 5;
+		}else if(ns<0){
+			baby.sight = 0;
+		}else
+			baby.sight = ns;
+		
+		float nc = (this.cooperation + mate.cooperation)/2 + c.nextFloat()*norp();
+		baby.cooperation = nc;
+		
+		float nms = (this.movementSpeed + mate.movementSpeed)/2 +c.nextFloat()*norp();
+		if (nms <1){
+			baby.movementSpeed = 1;
+		}else{
+			baby.movementSpeed = nms;
+		}
+		
+		float ngs = (this.gatheringSpeed + mate.gatheringSpeed)/2 + c.nextFloat()*norp();
+		if (ngs<0){
+			baby.gatheringSpeed = 0;
+		} else if(ngs>8){
+			baby.gatheringSpeed = 8;
+		} else{
+			baby.gatheringSpeed = ngs;
+		}
+		
 		return baby;
 	}
 	
