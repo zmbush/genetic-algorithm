@@ -64,6 +64,18 @@ public class creature {
       }
       
    }
+   public creature[] mateWith(creature mate){
+	   int numOfChildren = (int) ((this.fertility+mate.fertility) / 2);
+	   if (numOfChildren == 0){
+		   return null;
+	   }
+	   creature[] children = new creature[numOfChildren];
+	   for (int i=0; i<numOfChildren; i++){
+		   children[i] = this.produce(mate);
+	   }
+	   
+	   return children;
+   }
 	
 	public creature produce(creature mate){
 		Random c = new Random();
@@ -103,6 +115,9 @@ public class creature {
 		} else{
 			baby.gatheringSpeed = ngs;
 		}
+		
+		baby.x = c.nextInt(main.size);
+		baby.y = c.nextInt(main.size);
 		
 		return baby;
 	}
