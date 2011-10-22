@@ -95,6 +95,7 @@ public class creature {
          return;
       }
 		main.map[this.x][this.y].setCreature(this);
+      lengthOfStay = 0;
 	}
 
    public void eat(){

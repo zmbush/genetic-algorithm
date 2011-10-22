@@ -35,7 +35,7 @@ public class main {
 //             System.err.println(after[i].food);
 //          }
          System.err.println();
-         //printInfo();
+         printInfo();
          createNextGeneration();
          initMap(size);
 			gennum++;
