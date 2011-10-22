@@ -24,7 +24,7 @@ def main():
    xdim = int(dims[0])
    ydim = int(dims[1])
    
-   size = [xdim*3, ydim*3]
+   size = [xdim*35, ydim*35]
 
    pygame.init
 
@@ -35,12 +35,16 @@ def main():
    clock = pygame.time.Clock() 
 
    while True:
+      for event in pygame.event.get():
+         if event.type == pygame.QUIT:
+            pygame.quit()
+            return
       for x in range(xdim):
          for y in range(ydim):
-            line = sys.stdin.readline()
+            #line = sys.stdin.readline()
             c = random.randint(0, 5)
             color = selectColor(c)
-            pygame.draw.rect(screen, color, [x*3, y*3, 3, 3])
+            pygame.draw.rect(screen, color, [x*35, y*35, 35, 35])
       pygame.display.flip()
       clock.tick(15)
 
