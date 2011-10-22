@@ -1,9 +1,10 @@
+import java.util.LinkedList;
 import java.util.Random;
 
 
 public class creature {
 	float sight = 2; //0-5
-	float cooperation = 4;  //
+	float cooperation = 4;  // max number that a creature will share with.
 	float food = 0; 
 	float fertility = 2; // 0-3
 	float movementSpeed= 4; //inverse min 1
@@ -11,6 +12,7 @@ public class creature {
 	int lengthOfStay = 0;
 	int x = 0;
 	int y= 0;
+	LinkedList<creature> allies = new LinkedList<creature>();
 	//path finding
 	
 	//DIRECTIONS
