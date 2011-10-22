@@ -57,4 +57,35 @@ public class main {
 		//	System.out.println("Running round" + roundnum);
       //
 	}
+	
+	public static void printInfo(){
+		int avgSight = 0;
+		int avgCooperation = 0;
+		int avgFood = 0;
+		int avgFertility = 0;
+		int avgMovementSpeed = 0;
+		int avgGatheringSpeed = 0;
+		for (int i = 0; i<creatures.length; i++) {
+			avgSight += creatures[i].sight;
+			avgCooperation += creatures[i].cooperation;
+			avgFood += creatures[i].food;
+			avgFertility += creatures[i].fertility;
+			avgMovementSpeed += creatures[i].movementSpeed;
+			avgGatheringSpeed += creatures[i].gatheringSpeed;
+		}
+		avgSight /= creatures.length;
+		avgCooperation /= creatures.length;
+		avgFood /= creatures.length;
+		avgFertility /= creatures.length;
+		avgMovementSpeed /= creatures.length;
+		avgGatheringSpeed /= creatures.length;
+		
+		System.err.println("Average Scores:");
+		System.err.println("Sight: " + avgSight);
+		System.err.println("Cooperation: " + avgCooperation);
+		System.err.println("Food: " + avgFood);
+		System.err.println("Fertility: " + avgFertility);
+		System.err.println("Movement Speed: " + avgMovementSpeed);
+		System.err.println("Gethering Speed: " + avgGatheringSpeed);
+	}
 }
