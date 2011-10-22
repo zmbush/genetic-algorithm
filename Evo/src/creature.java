@@ -13,10 +13,10 @@ public class creature {
 	//path finding
 	
 	//DIRECTIONS
-	int up = 0;
-	int right = 1;
-	int down = 2;
-	int left = 3;
+	public static final int up = 0;
+	public static final int right = 1;
+	public static final int down = 2;
+	public static final int left = 3;
 	
 	creature(int xi, int yi){
 		x = xi;
@@ -42,6 +42,20 @@ public class creature {
 		}
 		main.map[this.x][this.y].setCreature(this);
 	}
+
+   public void eat(){
+      place loc = main.map[x][y];
+
+      float foodRemain = loc.food;
+      if(loc.food >= gatheringSpeed/4){
+         this.food += gatheringSpeed/4;
+         loc.food -= gatheringSpeed/4;
+      }else{
+         this.food = loc.food;
+         loc.food = 0;
+      }
+      
+   }
 	
 	public creature mateWith(creature mate){
 		Random c = new Random();

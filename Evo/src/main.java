@@ -10,11 +10,11 @@ public class main {
 	static int roundnum = 0;
 
 	public static void main(String[] args){
-      pf = new pathFinder();
+      pf = new mostFood();
 		System.out.println(size + " " + size);
 		initMap(size);
 		//		System.out.println("Map initialized.");
-		initCreatures(500);
+		initCreatures(10);
 		//		System.out.println("Creatures initialized.");
 		displayMap();
 		while (roundnum<rounds){
