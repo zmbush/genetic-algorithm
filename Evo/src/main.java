@@ -21,8 +21,8 @@ public class main {
 		while (gennum < generations){
 			runGeneration();
          createNextGeneration();
-			gennum++;
          initMap(size);
+			gennum++;
 		}
 	}
 
@@ -42,6 +42,7 @@ public class main {
 		int counter = 0;
 		for(int i = 0; i < num; i++){
 			creature c = new creature(r.nextInt(size), r.nextInt(size));
+         c.initRandomness();
 			creatures[i] = c;
 			map[c.x][c.y].setCreature(c);
 		}
@@ -56,7 +57,7 @@ public class main {
 	}
 
 	public static void runGeneration(){
-      for(int i = 0; i < 100; i++){
+      while(totalFood() > 0){
          pf.doMove();
          displayMap();
       }
@@ -64,7 +65,16 @@ public class main {
 
    public static void createNextGeneration(){
       creature[] sorted = sortCreaturesByFood();
+      System.err.println("Food Distribution: ");
+      for(int i = 0; i < sorted.length; i++){
+         System.err.println(sorted[i].food);
+      }
+
       LinkedList<creature> fit = new LinkedList<creature>();
+      for(int i = 0; i < sorted.length && sorted[i].food >= 60; i++){
+         System.err.println("Adding fit creature: " + sorted[i].food);
+         fit.add(sorted[i]);
+      }
    }
 
    public static creature[] sortCreaturesByFood(){
@@ -76,6 +86,16 @@ public class main {
                retval[j] = retval[j+1];
                retval[j+1] = temp;
             }
+         }
+      }
+      return retval;
+   }
+
+   public static int totalFood(){
+      int retval = 0;
+      for(int x = 0; x < map.length; x++){
+         for(int y = 0; y < map[x].length; y++){
+            retval += map[x][y].food;
          }
       }
       return retval;
