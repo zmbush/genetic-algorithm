@@ -109,44 +109,46 @@ public class creature {
    
    public int look(int direction){
 	   int total = 0;
+      float newSight = sight;
+      float diagSight = newSight / 1.5f;
       switch(direction){
          case up:
-            for (int i = 0; i<this.sight && this.y - i >= 0; i++){
-               total += main.map[this.x][this.y - i].food;
+            for(int i = 0; i < newSight && this.y - i >= 0; i++){
+               total += main.map[x][y - i].food;
             }
             break;
          case down:
-            for (int i = 0; i<this.sight && this.y + i < main.size - 1; i++){
-               total += main.map[this.x][this.y + i].food;
+            for(int i = 0; i < newSight && this.y + i < main.size - 1; i++){
+               total += main.map[x][y + i].food;
             }
             break;
          case left:
-            for (int i = 0; i<this.sight && this.x - i >= 0; i++){
-               total += main.map[this.x - i][this.y].food;
+            for(int i = 0; i < newSight && this.x - i >= 0; i++){
+               total += main.map[x - i][y].food;
             }
             break;
          case right:
-            for (int i = 0; i<this.sight && this.x + i <main.size - 1; i++){
-               total += main.map[this.x +1][this.y].food;
+            for(int i = 0; i < newSight && this.x + i < main.size - 1; i++){
+               total += main.map[x + i][y].food;
             }
             break;
          case ul:
-            for (int i = 0; i < (this.sight / 1.5) && x - i >= 0 && y - i >= 0; i++){
+            for (int i = 0; i < diagSight && x - i >= 0 && y - i >= 0; i++){
                total += main.map[x - i][y - i].food;
             }
             break;
          case ur:
-            for (int i = 0; i < (this.sight / 1.5) && x + i < main.size - 1 && y - i >= 0; i++){
+            for (int i = 0; i < diagSight && x + i < main.size - 1 && y - i >= 0; i++){
                total += main.map[x + i][y - i].food;
             }
             break;
          case dr:
-            for (int i = 0; i < (this.sight / 1.5) && x + i < main.size - 1 && y + 1 < main.size - 1; i++){
+            for (int i = 0; i < diagSight && x + i < main.size - 1 && y + 1 < main.size - 1; i++){
                total += main.map[x + i][y + i].food;
             }
             break;
          case dl:
-            for (int i = 0; i < (this.sight / 1.5) && x - i >= 0 && y + i < main.size - 1; i++){
+            for (int i = 0; i < diagSight && x - i >= 0 && y + i < main.size - 1; i++){
                total += main.map[x - i][y + i].food;
             }
             break;
