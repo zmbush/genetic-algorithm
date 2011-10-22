@@ -9,14 +9,16 @@ public class main {
 	static int roundnum = 0;
 
 	public static void main(String[] args){
+      System.out.println(size + " " + size);
 		initMap(size);
-		System.out.println("Map initialized.");
-		initCreatures(size);
-		System.out.println("Creatures initialized.");
+//		System.out.println("Map initialized.");
+		initCreatures(500);
+//		System.out.println("Creatures initialized.");
 		displayMap();
 		while (roundnum<rounds){
 			runRound();
 			displayMap();
+         roundnum++;
 		}
 	}
 
@@ -24,7 +26,7 @@ public class main {
 		Random c = new Random();
 		for(int x=0; x<mapSize; x++ ){
 			for (int y=0; y<mapSize; y++){
-				map[x][y]= new place(c.nextInt(3));
+				map[x][y]= new place(c.nextInt(5));
 			}
 		}
 	}
@@ -34,7 +36,7 @@ public class main {
 		Random r = new Random();
 		int counter = 0;
 		for(int i = 0; i < num; i++){
-			creature c = new creature(r.nextInt(size-1), r.nextInt(size-1));
+			creature c = new creature(r.nextInt(size), r.nextInt(size));
 			creatures[i] = c;
 			map[c.x][c.y].setCreature(c);
 		}
@@ -49,7 +51,6 @@ public class main {
 	}
 	
 	public static void runRound(){
-		System.out.println("Running round" + roundnum);
-		
+	//	System.out.println("Running round" + roundnum);
 	}
 }

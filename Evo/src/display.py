@@ -5,17 +5,15 @@ import random
 
 def selectColor(c):
    if c == 0:
-      return pygame.Color("black")
+      return pygame.Color(139, 69, 19)
    elif c == 1:
-      return pygame.Color("red")
+      return pygame.Color(20, 204, 10, 0)
    elif c == 2:
-      return pygame.Color("orange")
+      return pygame.Color(20, 153, 10, 0)
    elif c == 3:
-      return pygame.Color("yellow")
+      return pygame.Color(20, 102, 10, 0)
    elif c == 4:
-      return pygame.Color("green")
-   else:
-      return pygame.Color("red")
+      return pygame.Color(20, 51, 10, 0)
 
 def main():
    dims = sys.stdin.readline().strip().split(" ")
@@ -41,12 +39,27 @@ def main():
             return
       for x in range(xdim):
          for y in range(ydim):
-            #line = sys.stdin.readline()
-            c = random.randint(0, 5)
-            color = selectColor(c)
-            pygame.draw.rect(screen, color, [x*35, y*35, 35, 35])
+            line = sys.stdin.readline().strip().split(" ")
+            if line[0] != '' :
+               c = int(line[0])
+               color = selectColor(c)
+               pygame.draw.rect(screen, color, [x*35, y*35, 35, 35])
+               xpos = 0
+               ypos = 0
+               for p in range(int(line[1])):
+                  pygame.draw.rect(screen, pygame.Color("white"), 
+                     [x*35 + 5 + xpos*10,
+                      y*35 + 5 + ypos*10, 5, 5])
+                  xpos += 1
+                  if xpos >= 3:
+                     xpos = 0
+                     ypos += 1
+                  if ypos >= 3:
+                     break
+            else:
+               break
       pygame.display.flip()
-      clock.tick(15)
+      clock.tick(1)
 
 
    for line in sys.stdin:
