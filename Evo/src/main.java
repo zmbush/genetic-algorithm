@@ -67,7 +67,7 @@ public class main {
 	public static void displayMap(){
 		for(int x = 0; x < map.length; x++){
 			for(int y = 0; y < map[x].length; y++){
-				System.out.println(map[x][y].food + " " + map[x][y].creaturesHere());
+				System.out.println(map[x][y].food + " " + map[x][y].creaturesHere() + " " + map[x][y].predatorsHere());
 			}
 		}
 	}

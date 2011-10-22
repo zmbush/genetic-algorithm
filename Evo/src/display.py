@@ -56,6 +56,16 @@ def main():
                      ypos += 1
                   if ypos >= 3:
                      break
+               for p in range(int(line[1])):
+                  pygame.draw.rect(screen, pygame.Color("red"), 
+                     [x*35 + 5 + xpos*10 + 1,
+                      y*35 + 5 + ypos*10 + 1, 3, 3])
+                  xpos += 1
+                  if xpos >= 3:
+                     xpos = 0
+                     ypos += 1
+                  if ypos >= 3:
+                     break
             else:
                break
       pygame.display.flip()
