@@ -37,6 +37,57 @@ public class predator extends creature{
 			
 		}
 	}
+
+   @Override
+	public void move(int direction){
+		main.map[this.x][this.y].removePredator(this);
+		if(direction == up && this.y>0){
+			this.y--;
+		}
+		if(direction == down && this.y<main.size-1){
+			this.y++;
+		}
+		if(direction == left && this.x>0){
+			this.x--;
+		}
+		if(direction == right && this.x<main.size-1) {
+			this.x++;
+		}
+      if(direction == ul){
+         if(look(up) > look(left)){
+            move(up);
+         }else{
+            move(left);
+         }
+         return;
+      }
+      if(direction == ur){
+         if(look(up) > look(right)){
+            move(up);
+         }else{
+            move(right);
+         }
+         return;
+      }
+      if(direction == dr){
+         if(look(down) > look(right)){
+            move(down);
+         }else{
+            move(right);
+         }
+         return;
+      }
+      if(direction == dl){
+         if(look(down) > look(left)){
+            move(down);
+         }else{
+            move(left);
+         }
+         return;
+      }
+		main.map[this.x][this.y].setPredator(this);
+      lengthOfStay = 0;
+	}
 	@Override
 	public void initRandomness(){
 		Random r = new Random();

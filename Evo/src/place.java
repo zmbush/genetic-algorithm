@@ -30,4 +30,8 @@ public class place {
 	public void removeCreature(creature c){
 		crea.remove(c);
 	}
+
+   public void removePredator(predator p){
+      pred.remove(p);
+   }
 }
