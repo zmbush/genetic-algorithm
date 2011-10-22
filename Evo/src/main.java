@@ -131,6 +131,11 @@ public class main {
       predator[] psort = sortPredatorsByFood();
 
       LinkedList<predator> survivor = new LinkedList<predator>();
+      System.err.println("Predator Food Distribution: ");
+      for(int i = 0; i < psort.length; i++){
+         System.err.println(psort[i].food);
+      }
+
       for(int i = 0 ; i < psort.length && psort[i].food >= predatorThreshold; i++){
          survivor.add(psort[i]);
       }

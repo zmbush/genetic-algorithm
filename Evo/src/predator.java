@@ -97,4 +97,53 @@ public class predator extends creature{
 		this.movementSpeed = r.nextInt(2) + 1;
 	}
 
+   @Override
+   public int look(int direction){
+	   int total = 0;
+      float newSight = sight;
+      float diagSight = newSight / 1.5f;
+      switch(direction){
+         case up:
+            for(int i = 0; i < newSight && this.y - i >= 0; i++){
+               total += main.map[x][y - i].creaturesHere();
+            }
+            break;
+         case down:
+            for(int i = 0; i < newSight && this.y + i < main.size - 1; i++){
+               total += main.map[x][y + i].creaturesHere();
+            }
+            break;
+         case left:
+            for(int i = 0; i < newSight && this.x - i >= 0; i++){
+               total += main.map[x - i][y].creaturesHere();
+            }
+            break;
+         case right:
+            for(int i = 0; i < newSight && this.x + i < main.size - 1; i++){
+               total += main.map[x + i][y].creaturesHere();
+            }
+            break;
+         case ul:
+            for (int i = 0; i < diagSight && x - i >= 0 && y - i >= 0; i++){
+               total += main.map[x - i][y - i].creaturesHere();
+            }
+            break;
+         case ur:
+            for (int i = 0; i < diagSight && x + i < main.size - 1 && y - i >= 0; i++){
+               total += main.map[x + i][y - i].creaturesHere();
+            }
+            break;
+         case dr:
+            for (int i = 0; i < diagSight && x + i < main.size - 1 && y + i < main.size - 1; i++){
+               total += main.map[x + i][y + i].creaturesHere();
+            }
+            break;
+         case dl:
+            for (int i = 0; i < diagSight && x - i >= 0 && y + i < main.size - 1; i++){
+               total += main.map[x - i][y + i].creaturesHere();
+            }
+            break;
+      }
+	   return total;
+   }
 }

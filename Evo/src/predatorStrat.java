@@ -6,11 +6,22 @@ public class predatorStrat extends pathFinder{
 		Random r = new Random();
 		for(int i = 0; i < main.preds.length; i++){
 			predator p = main.preds[i];
-         System.err.println("Pred");
 			if(main.map[p.x][p.y].creaturesHere()>0){
 				p.eat();
 			}else{
-				p.move(r.nextInt(4));
+            int maxFood = -1;
+            int maxDir = -1;
+            for(int j = 0; j < 8; j++){
+               if(p.look(j) > maxFood){
+                  maxFood = p.look(j);
+                  maxDir = j;
+               }
+            }
+            if(maxFood > 0){
+				   p.move(maxDir);
+            }else{
+               p.move(r.nextInt(4));
+            }
 			}
 		}
 	}
