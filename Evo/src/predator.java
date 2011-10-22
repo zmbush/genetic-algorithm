@@ -3,6 +3,11 @@ import java.util.Random;
 
 public class predator extends creature{
 
+	public predator(int xi, int yi) {
+		this.x = xi;
+		this.y = yi;
+	}
+	
 	@Override
 	public void eat() {
 		place loc = main.map[x][y];

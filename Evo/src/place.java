@@ -23,6 +23,10 @@ public class place {
 		crea.add(c);
 	}
 	
+	public void setPredator(predator p){
+		pred.add(p);
+	}
+	
 	public void removeCreature(creature c){
 		crea.remove(c);
 	}
