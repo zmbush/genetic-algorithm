@@ -3,7 +3,6 @@ import java.util.Random;
 public class preferredDirectionSharing extends pathFinder{
    @Override
    public void doMove(){
-      Random r = new Random();
       for(int i = 0; i < main.creatures.length; i++){
          creature c = main.creatures[i];
          if(c.dead) continue;
@@ -35,7 +34,7 @@ public class preferredDirectionSharing extends pathFinder{
                }else if(maxFood > 0){
                   c.move(maxDir);
                }else{
-                  c.move(r.nextInt(4));
+                  c.move(main.rand.nextInt(4));
                }
             }
          }

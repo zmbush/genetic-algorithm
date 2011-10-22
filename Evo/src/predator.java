@@ -94,11 +94,10 @@ public class predator extends creature{
 	}
 	@Override
 	public void initRandomness(){
-		Random r = new Random();
-		this.sight = r.nextInt(3)+1;
-		this.fertility = r.nextInt(4);
-		this.gatheringSpeed = r.nextInt(4)+1;
-		this.movementSpeed = r.nextInt(2) + 1;
+		this.sight = main.rand.nextInt(3)+1;
+		this.fertility = main.rand.nextInt(4);
+		this.gatheringSpeed = main.rand.nextInt(4)+1;
+		this.movementSpeed = main.rand.nextInt(2) + 1;
 	}
 
    @Override

@@ -36,13 +36,12 @@ public class creature {
 	}
 	
 	public void initRandomness() {
-		Random r = new Random();
-		this.sight = r.nextInt(4);
-		this.fertility = r.nextInt(6);
-		this.gatheringSpeed = r.nextInt(6);
-		this.movementSpeed = r.nextInt(2) + 1;
-		this.stealth = r.nextInt(6);
-      this.cooperation = r.nextInt(4);
+		this.sight = main.rand.nextInt(4);
+		this.fertility = main.rand.nextInt(6);
+		this.gatheringSpeed = main.rand.nextInt(6);
+		this.movementSpeed = main.rand.nextInt(2) + 1;
+		this.stealth = main.rand.nextInt(6);
+      this.cooperation = main.rand.nextInt(4);
 	}
 	
 	public void declareAlly(creature friend){
@@ -237,9 +236,8 @@ public class creature {
    }
 	
 	public creature produce(creature mate){
-		Random c = new Random();
 		creature baby = new creature(mate.x, mate.y);
-		float nf = (this.fertility + mate.fertility)/2 + c.nextFloat()*norp();
+		float nf = (this.fertility + mate.fertility)/2 + main.rand.nextFloat()*norp();
 		if (nf> 8){
 			baby.fertility = 8;
 		}else if( nf<0){
@@ -248,7 +246,7 @@ public class creature {
 			baby.fertility = nf;
 		}
 		
-		float nst = (this.stealth + mate.stealth)/2 + c.nextFloat()*norp();
+		float nst = (this.stealth + mate.stealth)/2 + main.rand.nextFloat()*norp();
 		if (nst> 6){
 			baby.stealth = 6;
 		}else if( nst<0){
@@ -257,7 +255,7 @@ public class creature {
 			baby.stealth = nst;
 		}
 		
-		float ns = (this.sight + mate.sight)/2 + c.nextFloat()*norp();
+		float ns = (this.sight + mate.sight)/2 + main.rand.nextFloat()*norp();
 		if (ns> 5){
 			baby.sight = 5;
 		}else if(ns<0){
@@ -265,17 +263,17 @@ public class creature {
 		}else
 			baby.sight = ns;
 		
-		float nc = (this.cooperation + mate.cooperation)/2 + c.nextFloat()*norp();
+		float nc = (this.cooperation + mate.cooperation)/2 + main.rand.nextFloat()*norp();
 		baby.cooperation = nc;
 		
-		float nms = (this.movementSpeed + mate.movementSpeed)/2 +c.nextFloat()*norp();
+		float nms = (this.movementSpeed + mate.movementSpeed)/2 +main.rand.nextFloat()*norp();
 		if (nms <1){
 			baby.movementSpeed = 1;
 		}else{
 			baby.movementSpeed = nms;
 		}
 		
-		float ngs = (this.gatheringSpeed + mate.gatheringSpeed)/2 + c.nextFloat()*norp();
+		float ngs = (this.gatheringSpeed + mate.gatheringSpeed)/2 + main.rand.nextFloat()*norp();
 		if (ngs<0){
 			baby.gatheringSpeed = 0;
 		} else if(ngs>8){
@@ -284,16 +282,15 @@ public class creature {
 			baby.gatheringSpeed = ngs;
 		}
 		
-		baby.x = c.nextInt(main.size);
-		baby.y = c.nextInt(main.size);
+		baby.x = main.rand.nextInt(main.size);
+		baby.y = main.rand.nextInt(main.size);
 		
 		return baby;
 	}
 	
 	public int norp(){
-		Random c = new Random();
 		int n = 1;
-		if (c.nextInt(2) == 1){
+		if (main.rand.nextInt(2) == 1){
 			n = -1;
 		}
 		return n;

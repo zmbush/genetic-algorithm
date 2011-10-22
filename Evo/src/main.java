@@ -68,10 +68,9 @@ public class main {
 	}
 
 	public static void initMap(int mapSize){
-		Random c = new Random();
 		for(int x=0; x<mapSize; x++ ){
 			for (int y=0; y<mapSize; y++){
-				map[x][y]= new place(c.nextInt(5));
+				map[x][y]= new place(rand.nextInt(5));
 				//             map[x][y] = new place(4);
 			}
 		}
@@ -79,9 +78,8 @@ public class main {
 
 	public static void initCreatures(int num){
 		creatures = new creature[num];
-		Random r = new Random();
 		for(int i = 0; i < num; i++){
-			creature c = new creature(r.nextInt(size), r.nextInt(size));
+			creature c = new creature(rand.nextInt(size), rand.nextInt(size));
 			c.initRandomness();
 			creatures[i] = c;
 			map[c.x][c.y].setCreature(c);
@@ -90,9 +88,8 @@ public class main {
 
 	public static void initPredators(int num){
 		preds = new predator[num];
-		Random r = new Random();
 		for(int i = 0; i < num; i++){
-			predator c = new predator(r.nextInt(size), r.nextInt(size));
+			predator c = new predator(rand.nextInt(size), rand.nextInt(size));
 			c.initRandomness();
 			preds[i] = c;
 			map[c.x][c.y].setPredator(c);
@@ -135,10 +132,9 @@ public class main {
 			fit.add(sorted[i]);
 		}
 
-		Random r = new Random();
 		LinkedList<creature> nextGen = new LinkedList<creature>();
 		for(int i = 0; i < fit.size(); i++){
-			int one = i + r.nextInt(fit.size());
+			int one = i + rand.nextInt(fit.size());
 			if (one >= fit.size()) one -= fit.size();
 			creature[] children = fit.get(i).mateWith(fit.get(one));
 			if(children != null){
@@ -162,7 +158,7 @@ public class main {
 
       LinkedList<predator> predNextGen = new LinkedList<predator>();
       for(int i = 0; i < survivor.size(); i++){
-         int one = i + r.nextInt(survivor.size());
+         int one = i + rand.nextInt(survivor.size());
          if(one >= survivor.size()) one -= survivor.size();
          creature[] children = survivor.get(i).mateWith((creature)survivor.get(one));
          if(children != null){

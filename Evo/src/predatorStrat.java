@@ -3,7 +3,6 @@ import java.util.Random;
 public class predatorStrat extends pathFinder{
 	@Override
 	public void doMove(){
-		Random r = new Random();
 		for(int i = 0; i < main.preds.length; i++){
 			predator p = main.preds[i];
 			if(main.map[p.x][p.y].creaturesHere()>0){
@@ -20,7 +19,7 @@ public class predatorStrat extends pathFinder{
             if(maxFood > 0){
 				   p.move(maxDir);
             }else{
-               p.move(r.nextInt(4));
+               p.move(main.rand.nextInt(4));
             }
 			}
 		}
