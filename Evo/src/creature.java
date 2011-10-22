@@ -55,6 +55,34 @@ public class creature {
 		if(direction == right && this.x<main.size-1) {
 			this.x++;
 		}
+      if(direction == ul){
+         if(look(up) > look(left)){
+            move(up);
+         }else{
+            move(left);
+         }
+      }
+      if(direction == ur){
+         if(look(up) > look(right)){
+            move(up);
+         }else{
+            move(right);
+         }
+      }
+      if(direction == dr){
+         if(look(down) > look(right)){
+            move(down);
+         }else{
+            move(right);
+         }
+      }
+      if(direction == dl){
+         if(look(down) > look(left)){
+            move(down);
+         }else{
+            move(left);
+         }
+      }
 		main.map[this.x][this.y].setCreature(this);
 	}
 
