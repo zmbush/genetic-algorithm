@@ -31,13 +31,13 @@ public class creature {
 		if(direction == up && this.y>0){
 			this.y--;
 		}
-		if(direction == down && this.y<main.size){
+		if(direction == down && this.y<main.size-1){
 			this.y++;
 		}
 		if(direction == left && this.x>0){
 			this.x--;
 		}
-		if(direction == right && this.x<main.size) {
+		if(direction == right && this.x<main.size-1) {
 			this.x++;
 		}
 		main.map[this.x][this.y].setCreature(this);
