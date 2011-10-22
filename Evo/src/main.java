@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.Random;
 import java.util.LinkedList;
 
@@ -118,6 +119,29 @@ public class main {
          }
       }
       return retval;
+   }
+   
+   public static void share() {
+	   for (int i = 0; i<creatures.length; i++){
+		   creature current = creatures[i];
+		   Iterator<creature> iter = current.allies.listIterator();
+		   creature taker;
+		   if (iter.hasNext()){
+			   taker = iter.next();
+			   while (current.food > 20){
+				   if (taker.food <20){
+					   current.food--;
+					   taker.food++;
+				   }else{
+					   if (iter.hasNext()){
+						   iter.next();
+					   }else{
+						   break;
+					   }
+				   }
+			   }
+		   }
+	   }
    }
 	
 	public static void printInfo(){
