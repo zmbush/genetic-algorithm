@@ -11,7 +11,7 @@ public class main {
 	static int gennum = 0;
 
 	public static void main(String[] args){
-		pf = new mostFood();
+		pf = new preferredDirection();
 		System.out.println(size + " " + size);
       initMap(size);
 		//		System.out.println("Map initialized.");

@@ -18,6 +18,10 @@ public class creature {
 	public static final int right = 1;
 	public static final int down = 2;
 	public static final int left = 3;
+   public static final int ul = 4;
+   public static final int ur = 5;
+   public static final int dr = 6;
+   public static final int dl = 7;
 	
 	creature(int xi, int yi){
 		x = xi;
@@ -68,28 +72,63 @@ public class creature {
    
    public int look(int direction){
 	   int total = 0;
-	   if (direction == up){
-		   for (int i = 0; i<this.sight && this.y - i >= 0; i++){
-			   total += main.map[this.x][this.y - i].food;
-		   }
-	   }
-	   if (direction == down){
-		   for (int i = 0; i<this.sight && this.y + i < main.size; i++){
-			   total += main.map[this.x][this.y + i].food;
-		   }
-	   }
-	   if (direction == left){
-		   for (int i = 0; i<this.sight && this.x - i >= 0; i++){
-			   total += main.map[this.x - i][this.y].food;
-		   }
-	   }
-	   if (direction == right){
-		   for (int i = 0; i<this.sight && this.x + i <main.size; i++){
-			   total += main.map[this.x +1][this.y].food;
-		   }
-	   }
+      switch(direction){
+         case up:
+            for (int i = 0; i<this.sight && this.y - i >= 0; i++){
+               total += main.map[this.x][this.y - i].food;
+            }
+            break;
+         case down:
+            for (int i = 0; i<this.sight && this.y + i < main.size - 1; i++){
+               total += main.map[this.x][this.y + i].food;
+            }
+            break;
+         case left:
+            for (int i = 0; i<this.sight && this.x - i >= 0; i++){
+               total += main.map[this.x - i][this.y].food;
+            }
+            break;
+         case right:
+            for (int i = 0; i<this.sight && this.x + i <main.size - 1; i++){
+               total += main.map[this.x +1][this.y].food;
+            }
+            break;
+         case ul:
+            for (int i = 0; i < (this.sight / 2) && x - i >= 0 && y - i >= 0; i++){
+               total += main.map[x - i][y - i].food;
+            }
+            break;
+         case ur:
+            for (int i = 0; i < (this.sight / 2) && x + i < main.size - 1 && y - i >= 0; i++){
+               total += main.map[x + i][y - i].food;
+            }
+            break;
+         case dr:
+            for (int i = 0; i < (this.sight / 2) && x + i < main.size - 1 && y + 1 < main.size - 1; i++){
+               total += main.map[x + i][y + i].food;
+            }
+            break;
+         case dl:
+            for (int i = 0; i < (this.sight / 2) && x - i >= 0 && y + i < main.size - 1; i++){
+               total += main.map[x - i][y + i].food;
+            }
+            break;
+      }
 	   return total;
    }
+
+   public int preferredDirection(){
+      int maxFood = -100;
+      int dir = -1;
+      for(int i = 0; i < 8; i++){
+         if(maxFood < look(i)){
+            maxFood = look(i);
+            dir = i;
+         }
+      }
+      return dir;
+   }
+
    public creature[] mateWith(creature mate){
 	   int numOfChildren = (int) ((this.fertility+mate.fertility) / 2);
 	   if (numOfChildren == 0){
