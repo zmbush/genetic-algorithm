@@ -59,7 +59,7 @@ public class creature {
          this.food += gatheringSpeed/4;
          loc.food -= gatheringSpeed/4;
       }else{
-         this.food = loc.food;
+         this.food += loc.food;
          loc.food = 0;
       }
       
