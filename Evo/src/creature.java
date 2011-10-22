@@ -10,8 +10,8 @@ public class creature {
 	float movementSpeed= 4; //inverse min 1
 	float gatheringSpeed = 4; // 0-8
 	int lengthOfStay = 0;
-	static int x = 0;
-	static int y= 0;
+	int x = 0;
+	int y= 0;
 	LinkedList<creature> allies = new LinkedList<creature>();
 	//path finding
 	
