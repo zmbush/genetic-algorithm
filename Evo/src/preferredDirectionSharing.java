@@ -19,12 +19,24 @@ public class preferredDirectionSharing extends pathFinder{
             }else{
                maxFood = 0;
             }
-            if(cell.food > 0){
-               c.eat();
-            }else if(maxFood > 0){
-               c.move(maxDir);
+            if(cell.predatorsHere() > 0){
+               int minPred = 10000;
+               int minDir = -1;
+               for(int j = 0; j < 8; j++){
+                  if(c.lookPredators(i) < minPred){
+                     minPred = c.lookPredators(i);
+                     minDir = i;
+                  }
+               }
+               c.move(minDir);
             }else{
-               c.move(r.nextInt(4));
+               if(cell.food > 0){
+                  c.eat();
+               }else if(maxFood > 0){
+                  c.move(maxDir);
+               }else{
+                  c.move(r.nextInt(4));
+               }
             }
          }
          for(int j = 0; j < main.creatures.length; j++){
