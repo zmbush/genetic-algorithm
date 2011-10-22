@@ -5,6 +5,7 @@ public class main {
 	static int size= 20;
 	static place[][] map = new place[size][size];
 	static creature[] creatures;
+   static pathFinder pf;
 	static int rounds = 10;
 	static int roundnum = 0;
 
