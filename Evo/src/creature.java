@@ -9,6 +9,7 @@ public class creature {
 	float fertility = 4; // 0-3
 	float movementSpeed= 4; //inverse min 1
 	float gatheringSpeed = 4; // 0-8
+	float stealth = 2;
 	int lengthOfStay = 0;
    boolean dead = false;
 	int x = 0;
@@ -40,6 +41,7 @@ public class creature {
 		this.fertility = r.nextInt(6);
 		this.gatheringSpeed = r.nextInt(6);
 		this.movementSpeed = r.nextInt(2) + 1;
+		this.stealth = r.nextInt(8);
 	}
 	
 	public void declareAlly(creature friend){
@@ -243,6 +245,15 @@ public class creature {
 			baby.fertility= 0;
 		}else{
 			baby.fertility = nf;
+		}
+		
+		float nst = (this.stealth + mate.stealth)/2 + c.nextFloat()*norp();
+		if (nst> 8){
+			baby.stealth = 8;
+		}else if( nst<0){
+			baby.stealth= 0;
+		}else{
+			baby.stealth = nst;
 		}
 		
 		float ns = (this.sight + mate.sight)/2 + c.nextFloat()*norp();
