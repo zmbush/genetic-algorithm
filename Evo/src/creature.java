@@ -12,6 +12,12 @@ public class creature {
 	int y= 0;
 	//path finding
 	
+	//DIRECTIONS
+	int up = 1;
+	int right = 2;
+	int down = 3;
+	int left = 4;
+	
 	creature(int xi, int yi){
 		x = xi;
 		y = yi;
@@ -21,7 +27,20 @@ public class creature {
 	}
 
 	public void move(int direction){
-		
+		main.map[this.x][this.y].removeCreature(this);
+		if(direction == up && this.y>0){
+			this.y--;
+		}
+		if(direction == down && this.y<main.size){
+			this.y++;
+		}
+		if(direction == left && this.x>0){
+			this.x--;
+		}
+		if(direction == right && this.x<main.size) {
+			this.x++;
+		}
+		main.map[this.x][this.y].setCreature(this);
 	}
 	
 	public creature mateWith(creature mate){

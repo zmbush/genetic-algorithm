@@ -4,7 +4,6 @@ import java.util.Random;
 public class main {
 	static int size= 20;
 	static place[][] map = new place[size][size];
-	static creature[][] cmap = new creature[size][size];
 	static creature[] creatures;
 	static int rounds = 10;
 	static int roundnum = 0;

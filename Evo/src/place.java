@@ -16,6 +16,9 @@ public class place {
 	int y = 0;
 	public void setCreature(creature c) {
 		crea.add(c);
-		
+	}
+	
+	public void removeCreature(creature c){
+		crea.remove(c);
 	}
 }
