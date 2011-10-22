@@ -14,11 +14,14 @@ public class predator extends creature{
 		if(loc.creaturesHere() >= (int) gatheringSpeed/4){
 			this.food += (int) gatheringSpeed/4;
 			for (int i = ((int) gatheringSpeed/4); i>0; i--){
-				
+				loc.crea.remove(0);
 			}
 		}else{
-			this.food += loc.food;
-			loc.food = 0;
+			this.food += loc.creaturesHere();
+			for(int i = 0; i<loc.creaturesHere(); i++){
+				loc.crea.remove(0);
+			}
+			
 		}
 	}
 	@Override
