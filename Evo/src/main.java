@@ -9,16 +9,16 @@ public class main {
 	static int roundnum = 0;
 
 	public static void main(String[] args){
-      System.out.println(size + " " + size);
+		System.out.println(size + " " + size);
 		initMap(size);
-//		System.out.println("Map initialized.");
+		//		System.out.println("Map initialized.");
 		initCreatures(500);
-//		System.out.println("Creatures initialized.");
+		//		System.out.println("Creatures initialized.");
 		displayMap();
 		while (roundnum<rounds){
 			runRound();
 			displayMap();
-         roundnum++;
+			roundnum++;
 		}
 	}
 
@@ -49,8 +49,8 @@ public class main {
 			}
 		}
 	}
-	
+
 	public static void runRound(){
-	//	System.out.println("Running round" + roundnum);
+		//	System.out.println("Running round" + roundnum);
 	}
 }

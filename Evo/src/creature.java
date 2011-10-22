@@ -13,10 +13,10 @@ public class creature {
 	//path finding
 	
 	//DIRECTIONS
-	int up = 1;
-	int right = 2;
-	int down = 3;
-	int left = 4;
+	int up = 0;
+	int right = 1;
+	int down = 2;
+	int left = 3;
 	
 	creature(int xi, int yi){
 		x = xi;
