@@ -6,6 +6,8 @@ public class creature {
 	float cooperation = 4;
 	float food = 0;
 	float fertility = 4;
+	float movementSpeed= 4;
+	float gatheringSpeed = 4;
 	int x = 0;
 	int y= 0;
 	//path finding
@@ -15,7 +17,10 @@ public class creature {
 		y = yi;
 	}
 	
-	creature(){
+	creature(){		
+	}
+
+	public void move(int direction){
 		
 	}
 	
