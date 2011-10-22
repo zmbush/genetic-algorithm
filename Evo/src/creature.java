@@ -68,6 +68,7 @@ public class creature {
          }else{
             move(left);
          }
+         return;
       }
       if(direction == ur){
          if(look(up) > look(right)){
@@ -75,6 +76,7 @@ public class creature {
          }else{
             move(right);
          }
+         return;
       }
       if(direction == dr){
          if(look(down) > look(right)){
@@ -82,6 +84,7 @@ public class creature {
          }else{
             move(right);
          }
+         return;
       }
       if(direction == dl){
          if(look(down) > look(left)){
@@ -89,6 +92,7 @@ public class creature {
          }else{
             move(left);
          }
+         return;
       }
 		main.map[this.x][this.y].setCreature(this);
 	}

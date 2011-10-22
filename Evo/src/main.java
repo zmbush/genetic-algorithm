@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 public class main {
 	static int size= 20;
+   static int threshold = 20;
 	static place[][] map = new place[size][size];
 	static creature[] creatures;
 	static pathFinder pf;
@@ -12,7 +13,7 @@ public class main {
 	static int gennum = 0;
 
 	public static void main(String[] args){
-		pf = new mostFoodInSight();
+		pf = new preferredDirectionSharing();
 		System.out.println(size + " " + size);
       initMap(size);
 		//		System.out.println("Map initialized.");
@@ -22,6 +23,18 @@ public class main {
 		while (gennum < generations){
          System.err.println("Agents: " + creatures.length);
 			runGeneration();
+         System.err.println("Before sharing: ");
+         creature[] before = sortCreaturesByFood();
+         for(int i = 0; i < before.length; i++){
+            System.err.println(before[i].food);
+         }
+         share();
+         System.err.println("After sharing: ");
+         creature[] after = sortCreaturesByFood();
+         for(int i = 0; i < after.length; i++){
+            System.err.println(after[i].food);
+         }
+         System.err.println();
          //printInfo();
          createNextGeneration();
          initMap(size);
@@ -60,8 +73,8 @@ public class main {
 	}
 
 	public static void runGeneration(){
-      //for(int i = 0; i < 300 && totalFood() > 0; i++){
-      while(totalFood() > 0){
+      for(int i = 0; i < 300 && totalFood() > 0; i++){
+      //while(totalFood() > 0){
          pf.doMove();
          displayMap();
       }
@@ -75,7 +88,7 @@ public class main {
 //       }
 
       LinkedList<creature> fit = new LinkedList<creature>();
-      for(int i = 0; i < sorted.length && sorted[i].food >= 20; i++){
+      for(int i = 0; i < sorted.length && sorted[i].food >= threshold; i++){
 //          System.err.println("Adding fit creature: " + sorted[i].food);
          fit.add(sorted[i]);
       }
@@ -128,8 +141,8 @@ public class main {
 		   creature taker;
 		   if (iter.hasNext()){
 			   taker = iter.next();
-			   while (current.food > 20){
-				   if (taker.food <20){
+			   while (current.food > threshold){
+				   if (taker.food < threshold){
 					   current.food--;
 					   taker.food++;
 				   }else{
