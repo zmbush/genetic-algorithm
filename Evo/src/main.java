@@ -23,17 +23,17 @@ public class main {
 		while (gennum < generations){
          System.err.println("Agents: " + creatures.length);
 			runGeneration();
-         System.err.println("Before sharing: ");
-         creature[] before = sortCreaturesByFood();
-         for(int i = 0; i < before.length; i++){
-            System.err.println(before[i].food);
-         }
+//          System.err.println("Before sharing: ");
+//          creature[] before = sortCreaturesByFood();
+//          for(int i = 0; i < before.length; i++){
+//             System.err.println(before[i].food);
+//          }
          share();
-         System.err.println("After sharing: ");
-         creature[] after = sortCreaturesByFood();
-         for(int i = 0; i < after.length; i++){
-            System.err.println(after[i].food);
-         }
+//          System.err.println("After sharing: ");
+//          creature[] after = sortCreaturesByFood();
+//          for(int i = 0; i < after.length; i++){
+//             System.err.println(after[i].food);
+//          }
          System.err.println();
          //printInfo();
          createNextGeneration();
@@ -139,22 +139,45 @@ public class main {
 		   creature current = creatures[i];
 		   Iterator<creature> iter = current.allies.listIterator();
 		   creature taker;
-		   if (iter.hasNext()){
+		   while(iter.hasNext()){
 			   taker = iter.next();
 			   while (current.food > threshold + 1){
 				   if (taker.food < threshold + 1){
 					   current.food--;
 					   taker.food++;
 				   }else{
-					   if (iter.hasNext()){
-						   iter.next();
-					   }else{
-						   break;
-					   }
-				   }
+                  break;
+               }
 			   }
 		   }
 	   }
+      // Suicide...
+      for(int i = 0; i < creatures.length; i++){
+         creature c = creatures[i];
+         Iterator<creature> iter = c.allies.listIterator();
+         boolean shouldShare = false;
+         float maxFood = -1;
+         creature t, r = null;
+         while(iter.hasNext()){
+            t = iter.next();
+            if(c.food > maxFood){
+               maxFood = t.food;
+               r = t;
+            }
+         }
+         if(r != null){
+            if(maxFood < threshold + 1 && maxFood < c.food){
+               float need = threshold - r.food;
+               if(c.food >= need){
+                  c.food -= need;
+                  r.food += need;
+               }else{
+                  r.food += c.food;
+                  c.food = 0;
+               }
+            }
+         }
+      }
    }
 	
 	public static void printInfo(){
