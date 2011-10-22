@@ -29,8 +29,7 @@ public class mostFood extends pathFinder{
                maxDir = creature.right;
             }
          }else{
-            maxDir = r.nextInt(4);
-            maxFood = r.nextInt(5);
+            maxFood = 0;
          }
          if(cell.food > 0){
             c.eat();

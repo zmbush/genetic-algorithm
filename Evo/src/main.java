@@ -7,7 +7,7 @@ public class main {
 	static place[][] map = new place[size][size];
 	static creature[] creatures;
 	static pathFinder pf;
-	static int generations = 10;
+	static int generations = 100;
 	static int gennum = 0;
 
 	public static void main(String[] args){
@@ -19,7 +19,9 @@ public class main {
 		//		System.out.println("Creatures initialized.");
 		displayMap();
 		while (gennum < generations){
+         System.err.println("Agents: " + creatures.length);
 			runGeneration();
+         //printInfo();
          createNextGeneration();
          initMap(size);
 			gennum++;
@@ -57,6 +59,7 @@ public class main {
 	}
 
 	public static void runGeneration(){
+      //for(int i = 0; i < 300 && totalFood() > 0; i++){
       while(totalFood() > 0){
          pf.doMove();
          displayMap();
@@ -65,16 +68,32 @@ public class main {
 
    public static void createNextGeneration(){
       creature[] sorted = sortCreaturesByFood();
-      System.err.println("Food Distribution: ");
-      for(int i = 0; i < sorted.length; i++){
-         System.err.println(sorted[i].food);
-      }
+//       System.err.println("Food Distribution: ");
+//       for(int i = 0; i < sorted.length; i++){
+//          System.err.println(sorted[i].food);
+//       }
 
       LinkedList<creature> fit = new LinkedList<creature>();
-      for(int i = 0; i < sorted.length && sorted[i].food >= 60; i++){
-         System.err.println("Adding fit creature: " + sorted[i].food);
+      for(int i = 0; i < sorted.length && sorted[i].food >= 20; i++){
+//          System.err.println("Adding fit creature: " + sorted[i].food);
          fit.add(sorted[i]);
       }
+
+      Random r = new Random();
+      LinkedList<creature> nextGen = new LinkedList<creature>();
+      for(int i = 0; i < fit.size(); i++){
+         int one = i + r.nextInt(fit.size());
+         if (one >= fit.size()) one -= fit.size();
+         creature[] children = fit.get(i).mateWith(fit.get(one));
+         if(children != null){
+            for(int j = 0; j < children.length; j++){
+//                System.err.println("Adding new child");
+               nextGen.add(children[j]);
+            }
+         }
+      }
+
+      creatures = nextGen.toArray(new creature[0]);
    }
 
    public static creature[] sortCreaturesByFood(){
@@ -102,12 +121,12 @@ public class main {
    }
 	
 	public static void printInfo(){
-		int avgSight = 0;
-		int avgCooperation = 0;
-		int avgFood = 0;
-		int avgFertility = 0;
-		int avgMovementSpeed = 0;
-		int avgGatheringSpeed = 0;
+		float avgSight = 0;
+		float avgCooperation = 0;
+		float avgFood = 0;
+		float avgFertility = 0;
+		float avgMovementSpeed = 0;
+		float avgGatheringSpeed = 0;
 		for (int i = 0; i<creatures.length; i++) {
 			avgSight += creatures[i].sight;
 			avgCooperation += creatures[i].cooperation;
@@ -129,6 +148,7 @@ public class main {
 		System.err.println("Food: " + avgFood);
 		System.err.println("Fertility: " + avgFertility);
 		System.err.println("Movement Speed: " + avgMovementSpeed);
-		System.err.println("Gethering Speed: " + avgGatheringSpeed);
+		System.err.println("Gathering Speed: " + avgGatheringSpeed);
+      System.err.println();
 	}
 }

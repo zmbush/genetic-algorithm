@@ -59,7 +59,7 @@ def main():
             else:
                break
       pygame.display.flip()
-      clock.tick(10)
+      clock.tick(60)
 
 
    for line in sys.stdin:

@@ -5,7 +5,7 @@ public class creature {
 	float sight = 2; //0-5
 	float cooperation = 4;  //
 	float food = 0; 
-	float fertility = 2; // 0-5
+	float fertility = 2; // 0-3
 	float movementSpeed= 4; //inverse min 1
 	float gatheringSpeed = 4; // 0-8
 	int x = 0;
@@ -29,7 +29,7 @@ public class creature {
 	public void initRandomness() {
 		Random r = new Random();
 		this.sight = r.nextInt(4);
-		this.fertility = r.nextInt(4);
+		this.fertility = r.nextInt(3);
 		this.gatheringSpeed = r.nextInt(6);
 		this.movementSpeed = r.nextInt(2) + 1;
 	}
@@ -81,8 +81,8 @@ public class creature {
 		Random c = new Random();
 		creature baby = new creature(mate.x, mate.y);
 		float nf = (this.fertility + mate.fertility)/2 + c.nextFloat()*norp();
-		if (nf> 5){
-			baby.fertility = 5;
+		if (nf> 3){
+			baby.fertility = 3;
 		}else if( nf<0){
 			baby.fertility= 0;
 		}else{
