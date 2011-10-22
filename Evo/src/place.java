@@ -4,8 +4,13 @@ import java.util.LinkedList;
 public class place {
 	
 	LinkedList<creature> crea = new LinkedList<creature>();
+	LinkedList<predator> pred = new LinkedList<predator>();
 	place(int foo){
 		food = foo;
+	}
+	
+	public int predatorsHere(){
+		return pred.size();
 	}
 	
 	public int creaturesHere(){

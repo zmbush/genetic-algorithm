@@ -6,8 +6,10 @@ import java.util.LinkedList;
 public class main {
 	static int size= 20;
    static int threshold = 20;
+   static int t = 3;
 	static place[][] map = new place[size][size];
 	static creature[] creatures;
+	static predator[] preds;
 	static pathFinder pf;
 	static int generations = 100;
 	static int gennum = 0;
