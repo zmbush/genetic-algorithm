@@ -6,7 +6,7 @@ public class creature {
 	float sight = 2; //0-5
 	float cooperation = 4;  // max number that a creature will share with.
 	float food = 0; 
-	float fertility = 2; // 0-3
+	float fertility = 4; // 0-3
 	float movementSpeed= 4; //inverse min 1
 	float gatheringSpeed = 4; // 0-8
 	int lengthOfStay = 0;
@@ -190,8 +190,8 @@ public class creature {
 		Random c = new Random();
 		creature baby = new creature(mate.x, mate.y);
 		float nf = (this.fertility + mate.fertility)/2 + c.nextFloat()*norp();
-		if (nf> 3){
-			baby.fertility = 3;
+		if (nf> 6){
+			baby.fertility = 6;
 		}else if( nf<0){
 			baby.fertility= 0;
 		}else{
