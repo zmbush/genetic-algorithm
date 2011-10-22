@@ -60,7 +60,6 @@ public class main {
 	public static void initCreatures(int num){
 		creatures = new creature[num];
 		Random r = new Random();
-		int counter = 0;
 		for(int i = 0; i < num; i++){
 			creature c = new creature(r.nextInt(size), r.nextInt(size));
 			c.initRandomness();
@@ -215,7 +214,6 @@ public class main {
 		for(int i = 0; i < creatures.length; i++){
 			creature c = creatures[i];
 			Iterator<creature> iter = c.allies.listIterator();
-			boolean shouldShare = false;
 			float maxFood = -1;
 			creature t, r = null;
 			while(iter.hasNext()){

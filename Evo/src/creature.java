@@ -101,8 +101,6 @@ public class creature {
 
    public void eat(){
       place loc = main.map[x][y];
-
-      float foodRemain = loc.food;
       if(loc.food >= gatheringSpeed/4){
          this.food += gatheringSpeed/4;
          loc.food -= gatheringSpeed/4;
