@@ -139,10 +139,10 @@ public class main {
       for(int i = 0; i < survivor.size(); i++){
          int one = i + r.nextInt(survivor.size());
          if(one >= survivor.size()) one -= survivor.size();
-         predator[] children = (predator[])survivor.get(i).mateWith((creature)survivor.get(one));
+         creature[] children = survivor.get(i).mateWith((creature)survivor.get(one));
          if(children != null){
             for(int j = 0; j < children.length; j++){
-               predNextGen.add(children[j]);
+               predNextGen.add(new predator(children[j]));
             }
          }
       }

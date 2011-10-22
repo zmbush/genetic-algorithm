@@ -7,6 +7,19 @@ public class predator extends creature{
 		this.x = xi;
 		this.y = yi;
 	}
+
+   public predator(creature c){
+      this.sight = c.sight;
+      this.cooperation = c.cooperation;
+      this.food = c.food;
+      this.fertility = c.fertility;
+      this.movementSpeed = c.movementSpeed;
+      this.gatheringSpeed = c.gatheringSpeed;
+      this.lengthOfStay = c.lengthOfStay;
+      this.x = c.x;
+      this.y = c.y;
+      this.allies = c.allies;
+   }
 	
 	@Override
 	public void eat() {
