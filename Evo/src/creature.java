@@ -233,7 +233,7 @@ public class creature {
 	public int norp(){
 		Random c = new Random();
 		int n = 1;
-		if (c.nextInt(1) == 1){
+		if (c.nextInt(2) == 1){
 			n = -1;
 		}
 		return n;
