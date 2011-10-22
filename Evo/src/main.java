@@ -29,6 +29,7 @@ public class main {
 		for(int x=0; x<mapSize; x++ ){
 			for (int y=0; y<mapSize; y++){
 				map[x][y]= new place(c.nextInt(5));
+//             map[x][y] = new place(4);
 			}
 		}
 	}
