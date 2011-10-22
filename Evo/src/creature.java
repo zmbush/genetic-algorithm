@@ -40,6 +40,10 @@ public class creature {
 		this.gatheringSpeed = r.nextInt(6);
 		this.movementSpeed = r.nextInt(2) + 1;
 	}
+	
+	public void declareAlly(){
+		
+	}
 
 	public void move(int direction){
 		main.map[this.x][this.y].removeCreature(this);
@@ -124,22 +128,22 @@ public class creature {
             }
             break;
          case ul:
-            for (int i = 0; i < (this.sight / 2) && x - i >= 0 && y - i >= 0; i++){
+            for (int i = 0; i < (this.sight / 1.5) && x - i >= 0 && y - i >= 0; i++){
                total += main.map[x - i][y - i].food;
             }
             break;
          case ur:
-            for (int i = 0; i < (this.sight / 2) && x + i < main.size - 1 && y - i >= 0; i++){
+            for (int i = 0; i < (this.sight / 1.5) && x + i < main.size - 1 && y - i >= 0; i++){
                total += main.map[x + i][y - i].food;
             }
             break;
          case dr:
-            for (int i = 0; i < (this.sight / 2) && x + i < main.size - 1 && y + 1 < main.size - 1; i++){
+            for (int i = 0; i < (this.sight / 1.5) && x + i < main.size - 1 && y + 1 < main.size - 1; i++){
                total += main.map[x + i][y + i].food;
             }
             break;
          case dl:
-            for (int i = 0; i < (this.sight / 2) && x - i >= 0 && y + i < main.size - 1; i++){
+            for (int i = 0; i < (this.sight / 1.5) && x - i >= 0 && y + i < main.size - 1; i++){
                total += main.map[x - i][y + i].food;
             }
             break;
