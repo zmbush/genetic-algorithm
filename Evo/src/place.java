@@ -18,7 +18,7 @@ public class place {
       int retval = 0;
       Random r = new Random();
       for(int i = 0; i < crea.size(); i++){
-         if(!crea.get(i).dead && crea.get(i).stealth < r.nextInt(10)){
+         if(!crea.get(i).dead && (crea.get(i).stealth + (10/main.creatures.length)) < r.nextInt(10)){
             retval++;
          }
       }
