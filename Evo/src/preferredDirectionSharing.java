@@ -6,6 +6,7 @@ public class preferredDirectionSharing extends pathFinder{
       Random r = new Random();
       for(int i = 0; i < main.creatures.length; i++){
          creature c = main.creatures[i];
+         if(c.dead) continue;
          if(c.lengthOfStay < c.movementSpeed){
             c.lengthOfStay++;
          }else{

@@ -10,6 +10,7 @@ public class creature {
 	float movementSpeed= 4; //inverse min 1
 	float gatheringSpeed = 4; // 0-8
 	int lengthOfStay = 0;
+   boolean dead = false;
 	int x = 0;
 	int y= 0;
 	LinkedList<creature> allies = new LinkedList<creature>();
@@ -112,6 +113,54 @@ public class creature {
       
    }
    
+   public int lookPredators(int direction){
+	   int total = 0;
+      float newSight = sight;
+      float diagSight = newSight / 1.5f;
+      switch(direction){
+         case up:
+            for(int i = 0; i < newSight && this.y - i >= 0; i++){
+               total += main.map[x][y - i].predatorsHere();
+            }
+            break;
+         case down:
+            for(int i = 0; i < newSight && this.y + i < main.size - 1; i++){
+               total += main.map[x][y + i].predatorsHere();
+            }
+            break;
+         case left:
+            for(int i = 0; i < newSight && this.x - i >= 0; i++){
+               total += main.map[x - i][y].predatorsHere();
+            }
+            break;
+         case right:
+            for(int i = 0; i < newSight && this.x + i < main.size - 1; i++){
+               total += main.map[x + i][y].predatorsHere();
+            }
+            break;
+         case ul:
+            for (int i = 0; i < diagSight && x - i >= 0 && y - i >= 0; i++){
+               total += main.map[x - i][y - i].predatorsHere();
+            }
+            break;
+         case ur:
+            for (int i = 0; i < diagSight && x + i < main.size - 1 && y - i >= 0; i++){
+               total += main.map[x + i][y - i].predatorsHere();
+            }
+            break;
+         case dr:
+            for (int i = 0; i < diagSight && x + i < main.size - 1 && y + i < main.size - 1; i++){
+               total += main.map[x + i][y + i].predatorsHere();
+            }
+            break;
+         case dl:
+            for (int i = 0; i < diagSight && x - i >= 0 && y + i < main.size - 1; i++){
+               total += main.map[x - i][y + i].predatorsHere();
+            }
+            break;
+      }
+	   return total;
+   }
    public int look(int direction){
 	   int total = 0;
       float newSight = sight;

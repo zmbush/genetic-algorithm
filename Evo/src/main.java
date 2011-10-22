@@ -21,9 +21,9 @@ public class main {
 		System.out.println(size + " " + size);
 		initMap(size);
 		//		System.out.println("Map initialized.");
-		initCreatures(20);
+		initCreatures(40);
 		//		System.out.println("Creatures initialized.");
-		initPredators(4);
+		initPredators(2);
 		displayMap();
 		while (gennum < generations){
 			System.err.println("Agents: " + creatures.length);
@@ -92,8 +92,8 @@ public class main {
 	public static void runGeneration(){
 		for(int i = 0; i < 300 && totalFood() > 0; i++){
 			//while(totalFood() > 0){
-			pf.doMove();
 			ps.doMove();
+			pf.doMove();
 			displayMap();
 		}
 	}
@@ -107,6 +107,7 @@ public class main {
 
 		LinkedList<creature> fit = new LinkedList<creature>();
 		for(int i = 0; i < sorted.length && sorted[i].food >= threshold; i++){
+         if(sorted[i].dead) continue;
 			//          System.err.println("Adding fit creature: " + sorted[i].food);
 			fit.add(sorted[i]);
 		}

@@ -14,7 +14,12 @@ public class place {
 	}
 	
 	public int creaturesHere(){
-		return crea.size();
+      int retval = 0;
+      for(int i = 0; i < crea.size(); i++){
+         if(!crea.get(i).dead)
+            retval++;
+      }
+		return retval;
 	}
 	int food = 0;
 	int x = 0;

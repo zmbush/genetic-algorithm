@@ -24,14 +24,17 @@ public class predator extends creature{
 	@Override
 	public void eat() {
 		place loc = main.map[x][y];
-		if(loc.creaturesHere() >= (int) gatheringSpeed/4){
-			this.food += (int) gatheringSpeed/4;
-			for (int i = ((int) gatheringSpeed/4); i>0; i--){
+      int gath = (int)Math.ceil(gatheringSpeed / 4.0f);
+		if(loc.creaturesHere() >= gath){
+			this.food += gath;
+			for (int i = gath; i>0; i--){
+            loc.crea.get(0).dead = true;
 				loc.crea.remove(0);
 			}
 		}else{
 			this.food += loc.creaturesHere();
 			for(int i = 0; i<loc.creaturesHere(); i++){
+            loc.crea.get(0).dead = true;
 				loc.crea.remove(0);
 			}
 			
