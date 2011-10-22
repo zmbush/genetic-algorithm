@@ -41,8 +41,11 @@ public class creature {
 		this.movementSpeed = r.nextInt(2) + 1;
 	}
 	
-	public void declareAlly(){
-		
+	public void declareAlly(creature friend){
+		if(friend.cooperation > friend.allies.size()){
+			this.allies.add(friend);
+			friend.allies.add(this);
+		}
 	}
 
 	public void move(int direction){
