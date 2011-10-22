@@ -16,6 +16,7 @@ public class main {
 	static int gennum = 0;
    static boolean predators = false;
    static boolean predWin = false;
+   static Random rand = new Random();
 
 	public static void main(String[] args){
       for(int i = 0; i < args.length; i++){
