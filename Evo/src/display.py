@@ -58,7 +58,7 @@ def main():
                      break
                if ypos < 3:
                   for p in range(int(line[2])):
-                     pygame.draw.rect(screen, pygame.Color("red"), 
+                     pygame.draw.rect(screen, pygame.Color("black"), 
                         [x*35 + 5 + xpos*10,
                          y*35 + 5 + ypos*10, 5, 5])
                      xpos += 1
@@ -70,7 +70,7 @@ def main():
             else:
                break
       pygame.display.flip()
-      clock.tick(20)
+      clock.tick(200)
 
 
    for line in sys.stdin:

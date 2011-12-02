@@ -19,6 +19,18 @@ public class main {
    static Random rand = new Random();
 
 	public static void main(String[] args){
+      
+      java.util.Date date= new java.util.Date();
+
+
+      if(args.length > 1){
+         System.err.println("Seed: " + args[1]);
+         rand.setSeed(Long.parseLong(args[1]));
+      }else{
+         System.err.println("Seed: " + date.getTime());
+         rand.setSeed(date.getTime());
+      }
+
       for(int i = 0; i < args.length; i++){
          System.err.println(args[i]);
       }
@@ -27,10 +39,13 @@ public class main {
          predators = true;
          if(args[0].equals("no-pred")){
             predators = false;
+            initCreatures(20);
+            initPredators(0);
          }else if(args[0].equals("pred-win")){
             predWin = true;
             initCreatures(20);
             initPredators(4);
+            predatorThreshold = 1;
          }else if(args[0].equals("pred-lose")){
             predWin = false;
             initCreatures(40);
@@ -42,7 +57,7 @@ public class main {
 		System.out.println(size + " " + size);
 		//		System.out.println("Map initialized.");
 		//		System.out.println("Creatures initialized.");
-		initPredators(2);
+		//initPredators(2);
 		displayMap();
       //System.err.println("Population,Sight,Cooperation,Food,Fertility,Movement Speed,Gathering Speed");
 		while (gennum < generations){
@@ -53,7 +68,9 @@ public class main {
 			//          for(int i = 0; i < before.length; i++){
 			//             System.err.println(before[i].food);
 			//          }
-         share();
+         if(predWin){
+            share();
+         }
 			//          System.err.println("After sharing: ");
 			//          creature[] after = sortCreaturesByFood();
 			//          for(int i = 0; i < after.length; i++){
@@ -100,7 +117,7 @@ public class main {
 	public static void displayMap(){
 		for(int x = 0; x < map.length; x++){
 			for(int y = 0; y < map[x].length; y++){
-				System.out.println(map[x][y].food + " " + map[x][y].creaturesHere() 
+				System.out.println(map[x][y].food + " " + map[x][y].creaturesHere(true) 
                + " " + ((predators) ? map[x][y].predatorsHere() : 0));
 			}
 		}

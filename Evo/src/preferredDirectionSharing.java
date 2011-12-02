@@ -18,7 +18,7 @@ public class preferredDirectionSharing extends pathFinder{
             }else{
                maxFood = 0;
             }
-            if(cell.predatorsHere() > 0){
+            if(!main.predWin && cell.predatorsHere() > 0){
                int minPred = 10000;
                int minDir = -1;
                for(int j = 0; j < 8; j++){

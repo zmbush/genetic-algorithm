@@ -14,11 +14,16 @@ public class place {
 		return pred.size();
 	}
 	
-	public int creaturesHere(){
+   public int creaturesHere(){
+      return creaturesHere(false);
+   }
+	public int creaturesHere(boolean noHide){
       int retval = 0;
       for(int i = 0; i < crea.size(); i++){
-         if(!crea.get(i).dead && (crea.get(i).stealth + (10/main.creatures.length)) < main.rand.nextInt(10)){
-            retval++;
+         if(!crea.get(i).dead){
+            if((crea.get(i).stealth + (10/main.creatures.length)) < main.rand.nextInt(10) || noHide){
+               retval++;
+            }
          }
       }
 		return retval;
