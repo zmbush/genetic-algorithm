@@ -1,6 +1,5 @@
 import java.util.Random;
 
-
 public class predator extends creature{
 
 	public predator(int xi, int yi) {
