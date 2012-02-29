@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 import java.util.Random;
 
-
 public class creature {
 	float sight = 2; //0-5
 	float cooperation = 4;  // max number that a creature will share with.
