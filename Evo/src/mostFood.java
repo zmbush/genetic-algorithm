@@ -1,5 +1,6 @@
 import java.util.Random;
  
+
 public class mostFood extends pathFinder{
    @Override
    public void doMove(){
