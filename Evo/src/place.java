@@ -2,7 +2,6 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class place {
-	
 	LinkedList<creature> crea = new LinkedList<creature>();
 	LinkedList<predator> pred = new LinkedList<predator>();
 	place(int foo){
