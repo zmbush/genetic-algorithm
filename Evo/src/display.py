@@ -3,6 +3,7 @@ import sys
 import re
 import random
 
+
 def selectColor(c):
    if c == 0:
       return pygame.Color(139, 69, 19)
