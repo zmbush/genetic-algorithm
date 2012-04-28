@@ -1,5 +1,6 @@
    import java.util.Random;
 
+
 public class cooperate extends pathFinder{
 	@Override
 	public void doMove(){
